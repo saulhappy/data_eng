@@ -30,5 +30,3 @@ humidity = data["daily"]["data"][0]["humidity"]
 
 print(summary, time, sunrise_time, sunrise_time, temp_high, temp_low, humidity)
 
-
-
