@@ -29,8 +29,12 @@ class TestWeatherData(unittest.TestCase):
         self.assertIn("temp_high", data)
         self.assertIn("temp_low", data)
         self.assertIn("humidity", data)
-
-
+    
+    def test_get_data_frame_from_formatted_data(self):
+        wd = WeatherData()
+        wd.format_data()
+        data_frame = wd.get_data_frame_from_formatted_data()
+        self.assertEqual(len(data_frame), 1)
 
 if __name__ == "__main__":
     unittest.main()

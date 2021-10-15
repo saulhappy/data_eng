@@ -1,7 +1,5 @@
 import pandas as pd
 import requests
-import json
-import os
 
 from constants import URL, HEADERS, QUERY_STRING
 
@@ -37,6 +35,12 @@ class WeatherData():
 
     def get_formatted_data(self):
         return self.data
+    
+    def get_data_frame_from_formatted_data(self):
+        fd = self.get_formatted_data()
+        data_frame = pd.DataFrame(fd, columns=["summary", "time", "sunrise_time", "sunset_time", "temp_high", "temp_low", "humidity"], index=[0])
+        return data_frame
+    
     
 
 
