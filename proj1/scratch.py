@@ -40,4 +40,23 @@ weather_data["humidity"] = humidity
 
 weather_data_frame = pd.DataFrame(weather_data, columns=["summary", "time", "sunrise_time", "sunset_time", "temp_high", "temp_low", "humidity"], index=[0])
 
+def validate_data_frame(weather_data_frame):
+    # validate not empty
+    if weather_data_frame.empty:
+        raise Exception("Data frame is empty.")
+    
+    # check primary key uniqueness
+    if not pd.Series(weather_data_frame["time"]).is_unique:
+        raise Exception("Primary key constraint violated")
+    
+    # check for nulls
+    if weather_data_frame.isnull().values.any():
+        raise Exception("Null values found")
+    
+    return True
+
+if validate_data_frame(weather_data_frame):
+    print("All data checks passed!")
+        
+
 print(weather_data_frame)
