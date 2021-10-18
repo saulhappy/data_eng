@@ -3,9 +3,9 @@ from creds.keys import KEYS
 LAT = 30.360090
 LONG = -97.692980
 
-URL = f"https://dark-sky.p.rapidapi.com/{LAT},{LONG}"
-HOST = "dark-sky.p.rapidapi.com"
-QUERY_STRING = {"units":"auto","lang":"en"}
+URL = "https://aerisweather1.p.rapidapi.com/observations/78748"
+HOST = "aerisweather1.p.rapidapi.com"
+QUERY_STRING = {"radius":"10"}
 
 HEADERS = {
     'x-rapidapi-host': HOST,
