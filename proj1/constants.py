@@ -3,7 +3,7 @@ from creds.keys import KEYS
 LAT = 30.360090
 LONG = -97.692980
 
-URL = "https://aerisweather1.p.rapidapi.com/observations/78748"
+URL = "https://aerisweather1.p.rapidapi.com/forecasts/78748"
 HOST = "aerisweather1.p.rapidapi.com"
 QUERY_STRING = {"radius":"10"}
 
