@@ -14,31 +14,36 @@ class WeatherData():
     def format_data(self):
         data = self.query_api()
 
-        summary = data["daily"]["summary"]
-        time = data["daily"]["data"][0]["time"]
-        sunrise_time = data["daily"]["data"][0]["sunriseTime"]
-        sunset_time = data["daily"]["data"][0]["sunsetTime"]
-        temp_high = data["daily"]["data"][0]["temperatureHigh"]
-        temp_low = data["daily"]["data"][0]["temperatureLow"]
-        humidity = data["daily"]["data"][0]["humidity"]
+        timestamp = data["response"][0]["periods"][0]["timestamp"]
+        max_temp_f = data["response"][0]["periods"][0]["maxTempF"]
+        min_temp_f = data["response"][0]["periods"][0]["minTempF"]
+        max_humidity = data["response"][0]["periods"][0]["maxHumidity"]
+        min_humidity = data["response"][0]["periods"][0]["minHumidity"]
+        precip_in = data["response"][0]["periods"][0]["precipIN"]
+        weather = data["response"][0]["periods"][0]["weather"]
+        sunrise = data["response"][0]["periods"][0]["sunrise"]
+        sunset = data["response"][0]["periods"][0]["sunset"]
 
-        formated_data = {
-            "summary": summary,
-            "time" : time,
-            "sunrise_time": sunrise_time,
-            "sunset_time": sunset_time,
-            "temp_high": temp_high,
-            "temp_low": temp_low,
-            "humidity": humidity
-        }
-        self.data = formated_data
+        weather_data = {}
+
+        weather_data["timestamp"] = timestamp
+        weather_data["max_temp_f"] = max_temp_f
+        weather_data["min_temp_f"] = min_temp_f
+        weather_data["max_humidity"] = max_humidity
+        weather_data["min_humidity"] = min_humidity
+        weather_data["precip_in"] = precip_in
+        weather_data["weather"] = weather
+        weather_data["sunrise"] = sunrise
+        weather_data["sunset"] = sunset
+
+        self.data = weather_data
 
     def get_formatted_data(self):
         return self.data
     
     def get_data_frame_from_formatted_data(self):
         fd = self.get_formatted_data()
-        data_frame = pd.DataFrame(fd, columns=["summary", "time", "sunrise_time", "sunset_time", "temp_high", "temp_low", "humidity"], index=[0])
+        data_frame = pd.DataFrame(fd, columns=["timestamp", "max_temp_f", "min_temp_f", "max_humidity", "min_humidity", "precip_in", "weather", "sunrise", "sunset"], index=[0])
         return data_frame
     
     

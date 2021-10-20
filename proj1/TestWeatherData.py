@@ -16,19 +16,21 @@ class TestWeatherData(unittest.TestCase):
     
     def test_query_api(self):
         data = self.response.json()
-        self.assertIn("daily", data)
+        self.assertEqual(data["success"], True)
 
     def test_get_formatted_data(self):
         wd = WeatherData()
         wd.format_data()
         data = wd.get_formatted_data()
-        self.assertIn("summary", data)
-        self.assertIn("time", data)
-        self.assertIn("sunrise_time", data)
-        self.assertIn("sunset_time", data)
-        self.assertIn("temp_high", data)
-        self.assertIn("temp_low", data)
-        self.assertIn("humidity", data)
+        self.assertIn("timestamp", data)
+        self.assertIn("max_temp_f", data)
+        self.assertIn("min_temp_f", data)
+        self.assertIn("max_humidity", data)
+        self.assertIn("min_humidity", data)
+        self.assertIn("precip_in", data)
+        self.assertIn("weather", data)
+        self.assertIn("sunrise", data)
+        self.assertIn("sunset", data)
     
     def test_get_data_frame_from_formatted_data(self):
         wd = WeatherData()
